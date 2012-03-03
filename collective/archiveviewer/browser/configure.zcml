@@ -1,0 +1,14 @@
+<configure 
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="collective.archiveviewer">
+    <!-- -*- extra stuff goes here -*- -->
+
+  <browser:page
+      for="collective.archiveviewer.interfaces.IArchiveFile"
+      name="contents"
+      class=".views.ContentsView"
+      permission="zope.Public"
+      />
+
+</configure>
