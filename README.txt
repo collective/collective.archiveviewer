@@ -1,7 +1,7 @@
 Introduction
 ============
 
-Allow to view content of zip files into plone.
+Allow to view content of archive files into plone.
 
 How it works
 ============
@@ -10,7 +10,12 @@ Add an File with zipped content, this will be marked with 'collective.archivevie
 
 Now you can access the content trough web by appending '@@contents/$filename' to the path of your file.
 
-For instance, if you have a file 'foo.html' inside the zip you can view it by going to 'http://yourplone.com/yourzipfile/@@contents/foo.html'.
+For instance, if you have a file 'foo.html' inside the archive you can view it by going to 'http://yourplone.com/yourzipfile/@@contents/foo.html'.
+
+Supported archives
+==================
+
+- *.zip (application/zip)
 
 Compatibility
 ==============

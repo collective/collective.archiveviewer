@@ -9,6 +9,10 @@ class IArchiveReader(interface.Interface):
 	""" adapter for reading IArchiveFile
 	""" 
 
+	def get_content(self):
+		""" load the content of the archive
+		"""
+
 	def read(self, path):
 		""" read the content of the contained file matching path
 		"""
