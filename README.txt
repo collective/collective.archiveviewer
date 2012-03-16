@@ -6,16 +6,27 @@ Allow to view content of archive files into plone.
 How it works
 ============
 
-Add an File with zipped content, this will be marked with 'collective.archiveviewer.interfaces.IArchiveFile'.
+Add a File with zipped content, this will be marked with 'collective.archiveviewer.interfaces.IArchiveFile'.
 
 Now you can access the content trough web by appending '@@contents/$filename' to the path of your file.
 
-For instance, if you have a file 'foo.html' inside the archive you can view it by going to 'http://yourplone.com/yourzipfile/@@contents/foo.html'.
+For instance, if you have a file 'foo.html' inside the archive you can view it by going to 
+'http://yourplone.com/yourzipfile/@@contents/foo.html'.
 
 Supported archives
 ==================
 
 - *.zip (application/zip)
+
+NOTE: archives are supported trough adapters. You can simply register a named adapter providing 'IArchiveReader' interface and
+name it as the meta type to be supported (like 'application/zip').
+
+Please, refer to 'interfaces.py' and 'adapters.py' for understanding how to write yours.
+
+Issues
+======
+
+Please, submit any issue to https://github.com/collective/collective.archiveviewer/issues  
 
 Compatibility
 ==============
