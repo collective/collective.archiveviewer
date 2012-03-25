@@ -7,7 +7,7 @@ setup(name='collective.archiveviewer',
       version=version,
       description="Allows to upload archive files (check readme for supported types) \
       and access their contents trough the web, without having to download and extract them",
-      long_description=open("README.txt").read() + "\n" +
+      long_description=open("README.rst").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from
       # http://pypi.python.org/pypi?:action=list_classifiers
