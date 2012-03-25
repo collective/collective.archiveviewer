@@ -36,7 +36,14 @@ EXPECTED_FILENAMES = [
     'test_file.txt',
     'test_file.html',
     'folder/',
+    'downloadablefile.pdf',
+    'downloadablefile.odt',
+    'downloadablefile.doc',
+    'downloadablefile.docx',
 ]
+
+EXPECTED_DOWNLOADABLE = ['pdf','odt','doc','docx',] 
+
 
 class TestUtils(TestCase):
 
@@ -49,6 +56,9 @@ class TestUtils(TestCase):
         fnames = utils.get_zip_filenames(reader)
         for i in EXPECTED_FILENAMES:
             self.assertTrue(i in fnames)
+
+    def test_downaloadable_mapping(self):
+        pass
 
 
 class ZipView(TestCase):
@@ -97,6 +107,16 @@ class ZipView(TestCase):
         browser = Browser()
         browser.open(self.archive.absolute_url() + '/@@contents/folder/other_file.txt')
         self.assertTrue("other file content" in browser.contents)
+
+    def test_downloadable_contents(self):
+        browser = Browser()
+        downloadable = utils.get_downloadable_ctypes()
+        for ext in EXPECTED_DOWNLOADABLE:
+            mime = downloadable.get(ext)
+            url = '%s/@@contents/downloadablefile.%s' % (self.archive.absolute_url(),
+                                                   ext)
+            browser.open(url)
+            self.assertEqual(browser.headers["Content-type"], mime)
 
 
 def test_suite():

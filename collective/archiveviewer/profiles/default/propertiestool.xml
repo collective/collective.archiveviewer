@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<object name="portal_properties" meta_type="Plone Properties Tool">
+    <object name="archive_viewer_settings" meta_type="Plone Property Sheet">
+        <property name="title">Archive viewer settings</property>
+        <property name="downloadable_content_types" type="lines">
+            <element value="doc"/>
+            <element value="xls"/>
+            <element value="docx"/>
+            <element value="xlsx"/>
+            <element value="ppt"/>
+            <element value="pptx"/>
+            <element value="pdf"/>
+            <element value="odt"/>
+            <element value="ods"/>
+            <element value="odp"/>
+        </property>
+    </object>
+</object>

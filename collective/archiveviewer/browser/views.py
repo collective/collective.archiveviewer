@@ -9,11 +9,13 @@ from zope.publisher.interfaces import IPublishTraverse
 from zope import component
 
 from plone.memoize import instance
+from plone.memoize import view
 
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
 
 from collective.archiveviewer import _
+from collective.archiveviewer import utils
 from collective.archiveviewer.interfaces import IArchiveReader
 
 
@@ -53,8 +55,6 @@ class ContentsView(BrowserView):
     @property
     @instance.memoize
     def reader(self):
-        # StringIO(str(self.context)) is probably very inefficient
-        # (and is called for each asset of each lesson)
         return component.queryAdapter(self.context,
                                       IArchiveReader,
                                       name=self.content_type)
@@ -71,4 +71,19 @@ class ContentsView(BrowserView):
             return self
         if path in self.filenames:
             content = self.reader.read(path)
-            return PublishableString(content)
+            return self.publish_content(name,content)
+
+    @property
+    @view.memoize
+    def downloadable_ctypes(self):
+        return utils.get_downloadable_ctypes()
+
+    def publish_content(self, name, content):
+        ext = utils.get_ext(name)
+        if ext in self.downloadable_ctypes.keys():
+            # set headers properly
+            ctype = self.downloadable_ctypes.get(ext)
+            self.request.RESPONSE.setHeader('Content-Type',ctype)
+            self.request.RESPONSE.setHeader('Content-Length',len(content))
+            self.request.RESPONSE.setHeader('Content-Disposition','inline; filename=%s' % name)
+        return PublishableString(content)
