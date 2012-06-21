@@ -16,7 +16,7 @@ For instance, if you have a file 'foo.html' inside the archive you can view it b
 Supported archives
 ==================
 
-- *.zip (application/zip)
+- zip (application/zip)
 
 NOTE: archives are supported trough adapters. You can simply register a named adapter providing 'IArchiveReader' interface and
 name it as the meta type to be supported (like 'application/zip').
